@@ -1,0 +1,40 @@
+// Copyright 2015, gRPC Authors
+// All rights reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+// 
+//     http://www.apache.org/licenses/LICENSE-2.0
+// 
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.andi.nms.rpc.server";
+option java_outer_classname = "Server";
+option objc_class_prefix = "SER";
+
+package server;
+
+// The NmsServer definition.
+service NmsServer {
+  // sync device state
+  rpc syncDeviceState (DeviceState) returns (Ack) {}
+}
+
+// The request message containing the device's id and state.
+message DeviceState {
+  int32 devId = 1;
+  int32 devState = 2;
+}
+
+// The response message containing the code and message
+message Ack {
+  int32 code = 1;
+  string message = 2;
+}
