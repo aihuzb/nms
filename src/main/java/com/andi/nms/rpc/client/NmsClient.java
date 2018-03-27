@@ -16,74 +16,16 @@
 
 package com.andi.nms.rpc.client;
 
-import io.grpc.ManagedChannel;
-import io.grpc.ManagedChannelBuilder;
-import io.grpc.StatusRuntimeException;
-import io.grpc.examples.client.NetWork;
-import io.grpc.examples.client.NmsClientGrpc;
-import io.grpc.examples.server.Ack;
-
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import com.andi.nms.rpc.server.Ack;
+import com.andi.nms.rpc.server.NmsServerGrpc;
 
 /**
- * A simple client that requests a greeting from the {@link io.grpc.examples.server.NmsServerGrpc}.
+ * A simple client that requests a greeting from the {@link NmsServerGrpc}.
  */
-public class NmsClient {
-  private static final Logger logger = Logger.getLogger(NmsClient.class.getName());
+public interface NmsClient {
 
-  private final ManagedChannel channel;
-  private final NmsClientGrpc.NmsClientBlockingStub blockingStub;
+  public Ack sendNetWork(NetWork netWork);
 
-  /** Construct client connecting to HelloWorld server at {@code host:port}. */
-  public NmsClient(String host, int port) {
-    this(ManagedChannelBuilder.forAddress(host, port)
-        // Channels are secure by default (via SSL/TLS). For the example we disable TLS to avoid
-        // needing certificates.
-        .usePlaintext(true)
-        .build());
-  }
+  public Ack sendDevice(Device device);
 
-  /** Construct client for accessing RouteGuide server using the existing channel. */
-  NmsClient(ManagedChannel channel) {
-    this.channel = channel;
-    blockingStub = NmsClientGrpc.newBlockingStub(channel);
-  }
-
-  public void shutdown() throws InterruptedException {
-    channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
-  }
-
-  /** Say hello to server. */
-  public void sendNetWork(String name) {
-    logger.info("Will try to greet " + name + " ...");
-    NetWork netWork = NetWork.newBuilder().setAlohaModel(2).setId(11).build();
-    Ack ack;
-    try {
-      ack = blockingStub.sendNetWork(netWork);
-    } catch (StatusRuntimeException e) {
-      logger.log(Level.WARNING, "RPC failed: {0}", e.getStatus());
-      return;
-    }
-    logger.info("Greeting: " + ack.getMessage());
-  }
-
-  /**
-   * Greet server. If provided, the first element of {@code args} is the name to use in the
-   * greeting.
-   */
-  public static void main(String[] args) throws Exception {
-    NmsClient client = new NmsClient("localhost", 50051);
-    try {
-      /* Access a service running on the local machine on port 50051 */
-      String user = "world";
-      if (args.length > 0) {
-        user = args[0]; /* Use the arg as the name to greet if provided */
-      }
-      client.sendNetWork(user);
-    } finally {
-      client.shutdown();
-    }
-  }
 }

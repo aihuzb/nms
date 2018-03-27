@@ -1,8 +1,8 @@
 package com.andi.nms.rpc.server.impl;
 
-import io.grpc.examples.client.NetWork;
-import io.grpc.examples.client.NmsClientGrpc;
-import io.grpc.examples.server.Ack;
+import com.andi.nms.rpc.client.NetWork;
+import com.andi.nms.rpc.client.NmsClientGrpc;
+import com.andi.nms.rpc.server.Ack;
 import io.grpc.stub.StreamObserver;
 
 public class NmsClientImpl extends NmsClientGrpc.NmsClientImplBase {

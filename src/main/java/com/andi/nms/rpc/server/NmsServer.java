@@ -25,17 +25,17 @@ import java.util.logging.Logger;
 /**
  * Server that manages startup/shutdown of a {@code Greeter} server.
  */
-public class NMSServer {
-  private static final Logger logger = Logger.getLogger(NMSServer.class.getName());
+public class NmsServer {
+  private static final Logger logger = Logger.getLogger(NmsServer.class.getName());
 
   private Server server;
 
   private int port;
 
-  public NMSServer() {
+  public NmsServer() {
   }
 
-  public NMSServer(int port) {
+  public NmsServer(int port) {
     this.port = port;
   }
 
@@ -51,7 +51,7 @@ public class NMSServer {
       public void run() {
         // Use stderr here since the logger may have been reset by its JVM shutdown hook.
         System.err.println("*** shutting down gRPC server since JVM is shutting down");
-        NMSServer.this.stop();
+        NmsServer.this.stop();
         System.err.println("*** server shut down");
       }
     });
@@ -76,7 +76,7 @@ public class NMSServer {
    * Main launches the server from the command line.
    */
   public static void main(String[] args) throws IOException, InterruptedException {
-    final NMSServer server = new NMSServer();
+    final NmsServer server = new NmsServer();
     server.start();
     server.blockUntilShutdown();
   }
