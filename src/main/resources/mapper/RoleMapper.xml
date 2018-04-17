@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.andi.nms.business.dao.RoleMapper">
+  <resultMap id="BaseResultMap" type="com.andi.nms.business.bean.Role">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="role_id" jdbcType="INTEGER" property="roleId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="ncs_id" jdbcType="VARCHAR" property="ncsId" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+  </resultMap>
+
+  <select id="findRolesByUserName" resultMap="BaseResultMap">
+      SELECT r.* FROM t_role r,t_user_role ur ,t_user u WHERE r.role_id = ur.role AND ur.`user` = u.user_id AND u.`username` = #{arg0};
+  </select>
+
+</mapper>

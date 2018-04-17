@@ -1,6 +1,6 @@
 package com.andi.nms;
 
-import com.andi.nms.bean.User;
+import com.andi.nms.business.bean.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +30,9 @@ public class RedisTest {
 
         // 保存对象
         User user = new User();
-        user.setUserName("huzhibin");
-        user.setPassWord("123456");
-        redisTemplate.opsForValue().set(user.getUserName(), user);
+        user.setUsername("huzhibin");
+        user.setPassword("123456");
+        redisTemplate.opsForValue().set(user.getUsername(), user);
 
 
         System.out.println("huzhibin-----"+redisTemplate.opsForValue().get("huzhibin").toString());
@@ -45,14 +45,14 @@ public class RedisTest {
     @Test
     public void test1() throws Exception{
         User u1  = new User();
-        u1.setUserName("huzhibin1");
-        u1.setPassWord("123456");
+        u1.setUsername("huzhibin1");
+        u1.setPassword("123456");
         User u2  = new User();
-        u2.setUserName("huzhibin2");
-        u2.setPassWord("123456");
+        u2.setUsername("huzhibin2");
+        u2.setPassword("123456");
         User u3  = new User();
-        u3.setUserName("huzhibin3");
-        u3.setPassWord("123456");
+        u3.setUsername("huzhibin3");
+        u3.setPassword("123456");
 
         Set<User> set1 = new HashSet<User>();
         set1.add(u1);
@@ -99,16 +99,16 @@ public class RedisTest {
     public void listOperation() {
         List<User> list1 = new ArrayList<User>();
         User u1  = new User();
-        u1.setUserName("huzhibin4");
-        u1.setPassWord("123456");
+        u1.setUsername("huzhibin4");
+        u1.setPassword("123456");
         list1.add(u1);
         List<User> list2 = new ArrayList<User>();
         User u2  = new User();
-        u2.setUserName("huzhibin5");
-        u2.setPassWord("123456");
+        u2.setUsername("huzhibin5");
+        u2.setPassword("123456");
         User u3  = new User();
-        u3.setUserName("huzhibin6");
-        u3.setPassWord("123456");
+        u3.setUsername("huzhibin6");
+        u3.setPassword("123456");
         list2.add(u2);
         list2.add(u3);
         // 插入

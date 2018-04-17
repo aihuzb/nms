@@ -1,6 +1,6 @@
 package ${basePackage}.web;
-import ${basePackage}.core.Result;
-import ${basePackage}.core.ResultGenerator;
+import ${baseSysPackage}.core.Result;
+import ${baseSysPackage}.core.ResultGenerator;
 import ${basePackage}.bean.${modelNameUpperCamel};
 import ${basePackage}.service.${modelNameUpperCamel}Service;
 import com.github.pagehelper.PageHelper;

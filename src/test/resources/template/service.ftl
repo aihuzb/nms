@@ -1,6 +1,6 @@
 package ${basePackage}.service;
 import ${basePackage}.bean.${modelNameUpperCamel};
-import ${basePackage}.core.Service;
+import ${baseSysPackage}.core.Service;
 
 
 /**

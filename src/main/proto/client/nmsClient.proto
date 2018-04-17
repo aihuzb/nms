@@ -15,7 +15,7 @@
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "com.andi.nms.rpc.client";
+option java_package = "com.andi.nms.sys.rpc.client";
 option java_outer_classname = "Client";
 option objc_class_prefix = "CLT";
 
@@ -39,6 +39,7 @@ message NetWork {
   int32 netWorkModel = 2;
   int32 alohaModel = 3;
   IpAddr ipAddr = 4;
+  string name = 5;
 }
 
 message IpAddr{
